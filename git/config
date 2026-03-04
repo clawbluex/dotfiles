@@ -1,0 +1,143 @@
+# vim: syntax=gitconfig
+[user]
+	useConfigOnly = true
+[init]
+	defaultBranch = main
+[checkout]
+	defaultRemote = upstream
+[core]
+	editor = vim
+	filemode = true
+	pager = less -+$LESS -FRSX
+	quotepath = off
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol,blank-at-eol,blank-at-eof
+	fsmonitor = false
+	untrackedCache = true
+	compression = 0
+	packedGitLimit = 256m
+	packedGitWindowSize = 256m
+[pack]
+	window = 1
+	deltaCacheSize = 512m
+	packSizeLimit = 512m
+	windowMemory = 512m
+[apply]
+	whitespace = warn
+[advice]
+	skippedCherryPicks = false
+[format]
+	pretty = '%C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s'
+[log]
+	date = local
+[difftool "opendiff"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "opendiff"]
+	cmd = opendiff -merge \"$MERGED\" -ancestor \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = false
+[difftool "vscode"]
+	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+[mergetool "vscode"]
+	cmd = code --wait \"$MERGED\"
+	trustExitCode = true
+[difftool "nvim"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[diff]
+	tool = opendiff
+	renames = true
+	colorMoved = default
+[difftool]
+	prompt = false
+[merge]
+	tool = opendiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[push]
+	default = current
+[alias]
+	ci = commit
+	co = checkout
+	cr = clone --recurse-submodules
+	cs = clone --depth 1 --no-tags
+	csr = clone --depth 1 --no-tags --shallow-submodules --recurse-submodules
+	fa = ! git foresta --all --style=10 | less -RSX
+	glog = log --graph --all --pretty=fuller
+	glog1 = log --graph --oneline --abbrev-commit --first-parent
+	glog2 = log --graph --all --oneline --decorate
+	glog3 = log --graph --all --pretty=format:'%C(yellow)%h -%C(bold red)%d%C(reset) %s %C(green)(%ci) %C(bold blue)[%an]%C(reset)'
+	glog4 = log --graph --pretty=format:'%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%ce%Creset %s'
+	glogs = log --graph --all --pretty=fuller --stat
+	hist = log --graph --all --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%cd%C(reset) %C(bold blue)[%an]%C(reset)\" --relative-date --decorate
+	rollback = reset --soft HEAD~
+	sh = show --color-words='[^[:space:]]'
+	st = status
+	sw = switch
+	mirror = clone --mirror
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:merge-requests/$2 && git checkout merge-requests/$2' -
+	pr = !sh -c 'git fetch $1 pull/$2/head:pull/$2 && git checkout pull/$2' -
+	tags = tag -l --sort=v:refname
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	showbranch = auto
+	ui = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	plain = normal
+	meta = magenta
+	frag = cyan bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "status"]
+	header = normal
+	nobranch = red
+	branch = green bold
+	added = yellow
+	updated = green
+	changed = red
+	untracked = magenta blink
+	unmerged = red bold
+	localBranch = green bold
+	remoteBranch = red bold
+[color "interactive"]
+	prompt = normal
+	header = normal
+	help = normal
+	error = normal
+[branch]
+	autosetuprebase = always
+[http]
+	sslVerify = true
+	postBuffer = 256m
+	lowSpeedLimit = 1000
+	lowSpeedTime = 600
+[ssh]
+	postBuffer = 256m
+[http "https://weak.example.com"]
+	sslVerify = false
+	cookieFile = /tmp/cookie.txt
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[fetch]
+	prune = true
+	pruneTags = true
