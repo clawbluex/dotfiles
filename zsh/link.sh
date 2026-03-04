@@ -14,6 +14,7 @@ dot.zshrc
 dot.zlogin
 dot.zlogout
 dot.zshrc.d
+dot.zimrc
 EOF
 )
 while IFS= read -r file <&3 ; do
