@@ -1,15 +1,35 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000000 # Number of lines of history kept within the shell
-SAVEHIST=1000000000 # Number of lines of history to save to $HISTFILE
+# .zshrc
+# loaded for interactive shells
 
-setopt autocd extendedglob
-bindkey -e
+# Load all files from .shell/zshrc.d directory
+function source-zshrcd {
+	setopt extended_glob
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/clawbluex/.zshrc'
+	# glob search for the zshrc.d dir
+	local zshrcd=(
+		$ZSHRCD(/N)
+		$ZDOTDIR/zshrc.d(/N)
+		$ZDOTDIR/conf.d(/N)
+		${ZDOTDIR:-$HOME}/.zshrc.d(/N)
+		${ZDOTDIR:-$HOME}/.zshrc.d(@N)
+	)
+	zshrcd=$zshrcd[1]
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+	if [[ ! -d "$zshrcd" ]]; then
+		echo >&2 "zshrc.d: dir not found '${ZSHRCD:-${ZDOTDIR:-$HOME}/.zshrc.d}'"
+		return 1
+	fi
+
+	# source files in zshrc.d in order
+	local conf_files=("$zshrcd"/*.{sh,zsh}(N))
+	local f
+	for f in ${(o)conf_files}; do
+		# ignore files that begin with a tilde
+		case ${f:t} in '~'*) continue;; esac
+		source "$f"
+	done
+}
+source-zshrcd
+
+# Load local zshrc settings
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
