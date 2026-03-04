@@ -8,9 +8,10 @@
 [core]
 	editor = vim
 	filemode = true
-	pager = less -+$LESS -FRSX
+	pager = delta
 	quotepath = off
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol,blank-at-eol,blank-at-eof
+	# enable fsmonitor daemon to improve git status/add performance
 	fsmonitor = false
 	untrackedCache = true
 	compression = 0
@@ -29,6 +30,9 @@
 	pretty = '%C(yellow)%h%Creset %C(magenta)%cd%Creset %d %s'
 [log]
 	date = local
+	# date = iso
+	# date = short
+	# date = relative
 [difftool "opendiff"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -63,6 +67,7 @@
 	cr = clone --recurse-submodules
 	cs = clone --depth 1 --no-tags
 	csr = clone --depth 1 --no-tags --shallow-submodules --recurse-submodules
+	dr = diff --color-words='[^[:space:]]'
 	fa = ! git foresta --all --style=10 | less -RSX
 	glog = log --graph --all --pretty=fuller
 	glog1 = log --graph --oneline --abbrev-commit --first-parent
@@ -141,3 +146,27 @@
 [fetch]
 	prune = true
 	pruneTags = true
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+[diff-so-fancy]
+	markEmptyLines = false
+	stripLeadingSymbols = false
+[delta]
+	features = decorations
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color
+	diff-so-fancy = true
+	line-numbers = true
+	side-by-side = false
+[delta "interactive"]
+	keep-plus-minus-markers = false
+[delta "decorations"]
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax
+	keep-plus-minus-markers = false
+
