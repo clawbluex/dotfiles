@@ -15,6 +15,7 @@ dot.zlogin
 dot.zlogout
 dot.zshrc.d
 dot.zimrc
+dot.p10k.zsh
 EOF
 )
 while IFS= read -r file <&3 ; do

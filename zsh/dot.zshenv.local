@@ -1,3 +1,13 @@
 # universal environment variables
 # e.g. PATH, LANG, etc.
 
+# Prompt Framework
+#ZSH_PROMPT=p10k
+#ZSH_PROMPT=starship
+
+# Preset for starship
+#ZSH_STARSHIP_PRESET=catppuccin-powerline
+#ZSH_STARSHIP_PRESET=jetpack
+#ZSH_STARSHIP_PRESET=p10k
+#ZSH_STARSHIP_PRESET=pastel-powerline
+#ZSH_STARSHIP_PRESET=tokyo-night
