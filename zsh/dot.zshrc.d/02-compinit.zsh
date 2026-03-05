@@ -11,9 +11,10 @@ for dump in ~/.zcompdump(N.mh+1); do
 done
 compinit -C > /dev/null 2>&1
 
-zstyle ':completion:*' menu yes select
+zstyle ':completion:*' menu select
 
 # [Shift-Tab] - move through the completion menu backwards
 if [[ "${terminfo[kcbt]}" != "" ]]; then
 	bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
+
