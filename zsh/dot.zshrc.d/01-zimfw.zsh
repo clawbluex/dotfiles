@@ -65,7 +65,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 #
 [[ -d /usr/local/share/zsh-completions ]] && fpath+=/usr/local/share/zsh-completions
 [[ -d /opt/homebrew/share/zsh-completions ]] && fpath+=/opt/homebrew/share/zsh-completions
-[[ -d ~/.zsh_completions ]] && fpath=(~/.zsh_completions $fpath)
+[[ -d ~/.local/share/zsh/completions ]] && fpath=(~/.local/share/zsh/completions $fpath)
 
 #
 # zim completion
@@ -87,7 +87,7 @@ ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-	echo "Downloading zimfw ..."
+	>&2 echo "Downloading zimfw ..."
 	if (( ${+commands[curl]} )); then
 		curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
 			https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
@@ -99,7 +99,7 @@ fi
 
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-	echo "Install missing modules and update settings ..."
+	>&2 echo "Install missing modules and update settings ..."
 	source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 

@@ -16,7 +16,7 @@ function source-zshrcd {
 	zshrcd=$zshrcd[1]
 
 	if [[ ! -d "$zshrcd" ]]; then
-		echo >&2 "zshrc.d: dir not found '${ZSHRCD:-${ZDOTDIR:-$HOME}/.zshrc.d}'"
+		>&2 echo "zshrc.d: dir not found '${ZSHRCD:-${ZDOTDIR:-$HOME}/.zshrc.d}'"
 		return 1
 	fi
 

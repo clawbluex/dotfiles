@@ -4,7 +4,7 @@ autoload -Uz compinit
 
 # Rebuild .zcompdump if older than 1 hours
 for dump in ~/.zcompdump(N.mh+1); do
-	echo "Rebuilding $dump"
+	>&2 echo "Rebuilding $dump"
 	compinit > /dev/null 2>&1
 	touch "$dump"
 	zcompile "$dump"

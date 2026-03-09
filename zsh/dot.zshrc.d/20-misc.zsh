@@ -2,6 +2,10 @@
 autoload -U select-word-style
 select-word-style bash
 
+# Enable zsh colors
+autoload -Uz colors
+colors
+
 # This speeds up pasting w/ autosuggest
 # https://github.com/zsh-users/zsh-autosuggestions/issues/238
 pasteinit() {

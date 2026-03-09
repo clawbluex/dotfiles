@@ -9,4 +9,4 @@ if [ -f "$HOME/.config/starship/$ZSH_STARSHIP_PRESET.toml" ]; then
 	export STARSHIP_CONFIG="$HOME/.config/starship/$ZSH_STARSHIP_PRESET.toml"
 fi
 
-[[ $commands[starship] ]] && eval "$(starship init zsh)" || echo "starship not installed"
+[[ $commands[starship] ]] && eval "$(starship init zsh)" || >&2 echo "starship not installed"
