@@ -9,3 +9,5 @@ alias uniq='LC_ALL=C uniq'
 
 alias rsync='rsync -avh --progress --stats --no-o'
 alias xargs='xargs -o'
+
+[[ $commands[lsd] ]] && alias lsd='lsd -vN'
