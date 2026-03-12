@@ -17,4 +17,4 @@ ln -sfnr config "${CONFIG_DIR}/config" 2>/dev/null || \
 ln -sfnr ignore "${CONFIG_DIR}/ignore" 2>/dev/null || \
 	ln -sfn "${curdir}/ignore" "${CONFIG_DIR}/ignore"
 
-[ -f ~/.gitconfig ] || cp dot.gitconfig ~/.gitconfig
+[[ -e "$HOME/.gitconfig" ]] || cp dot.gitconfig "$HOME/.gitconfig"
