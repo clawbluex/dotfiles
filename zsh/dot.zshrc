@@ -33,3 +33,11 @@ source-zshrcd
 
 # Load local zshrc settings
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# bun
+#export BUN_INSTALL="$HOME/.bun"
+#export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+#[ -s "${BUN_INSTALL}/_bun" ] && source "${BUN_INSTALL}/_bun"
+
