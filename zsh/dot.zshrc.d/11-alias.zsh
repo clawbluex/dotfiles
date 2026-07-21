@@ -11,3 +11,4 @@ alias rsync='rsync -avh --progress --stats --no-o'
 alias xargs='xargs -o'
 
 [[ $commands[lsd] ]] && alias lsd='lsd -vN'
+[[ $commands[duf] ]] && alias df='duf'
