@@ -1,0 +1,16 @@
+# Environment file read by the Makefile
+.env
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor / tooling cruft
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
